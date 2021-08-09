@@ -10,7 +10,8 @@ type Product struct {
 	gorm.Model
 	Name         string         `gorm:"type:varchar(100);not null"`
 	Observations sql.NullString `gorm:"type:varchar(100);"`
-	Price        int            `gorm:"foreignkey:ProductPrice;type:int;not null"`
+	Price        int            `gorm:"type:int"`
+	Sale         Sale
 }
 
 type Client struct {
@@ -19,13 +20,14 @@ type Client struct {
 	Comment    sql.NullString `gorm:"type:varchar(100);"`
 	Country    string         `gorm:"type:varchar(100);not null"`
 	PostalCode string         `gorm:"type:varchar(100);not null"`
+	Sale       Sale
 }
 
 type Sale struct {
 	gorm.Model
-	ClientID     Client  `gorm:"type:int;not null;references:ID"`
-	ProductID    Product `gorm:"type:int;not null;references:ID"`
-	Quantity     uint    `gorm:"type:int;not null"`
-	ProductPrice Product `gorm:"references:Price"`
-	Income       uint    `gorm:"type:int;not null"`
+	ClientID     uint `gorm:"type:int;not null;"`
+	ProductID    uint `gorm:"type:int;not null;"`
+	ProductPrice uint `gorm:"type:int;not null;"`
+	Quantity     uint `gorm:"type:int;not null"`
+	Income       uint `gorm:"not null;default:(product_price*quantity)"`
 }
