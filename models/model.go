@@ -10,7 +10,7 @@ type Product struct {
 	gorm.Model
 	Name         string         `gorm:"type:varchar(100);not null"`
 	Observations sql.NullString `gorm:"type:varchar(100);"`
-	Price        int            `gorm:"type:int;not null"`
+	Price        int            `gorm:"foreignkey:ProductPrice;type:int;not null"`
 }
 
 type Client struct {
