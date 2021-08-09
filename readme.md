@@ -1,3 +1,8 @@
+Managing a database in GO using GORM's framework. 
+Used drivers: PostgreSQL & MySQL.
+
+
+SOME COMMANDS:
 Select a driver (MySQL or Postgres)
 driver := storage.MySQL // driver := storage.Postgres
 
